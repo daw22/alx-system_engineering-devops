@@ -1,0 +1,2 @@
+#!/bin/bashi
+echo $PATH | grep -o ":" | wc -l

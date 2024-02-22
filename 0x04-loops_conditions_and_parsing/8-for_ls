@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#displays every file in current directory (only the name)
+
+list=$(ls)
+
+for name in $list
+do
+	echo "$name" | cut -d "-" -f2
+done

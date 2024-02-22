@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# This scripts displays "best school" 10 times unless
+#+ it is on the 4th iteration (displays "bad lick") or
+#+ on the 8th iteration (displays "good lick")
+x=0
+while [ "$x" -lt 10 ]
+do
+    if [ "$x" -eq 3 ]
+    then
+        echo "bad luck"
+      elif [ "$x" -eq 7 ]
+    then
+        echo "good luck"
+    else
+       echo "Best School"
+    fi
+    x=$((x+1))
+done
+

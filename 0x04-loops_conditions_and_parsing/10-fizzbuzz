@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# display number from 1 to 100 and replaces
+#+ number divisble by both 3 and 5 by FizzBuzz
+#+ numbers divisble by 3 with Fizz and 
+#+ number divisible by 5 with Buzz
+
+x=1
+
+while [ "$x" -le 100 ]
+do
+	if (( x % 5 == 0 && x % 3 == 0 ))
+	then
+		echo "FizzBuzz"
+	elif (( x % 3 == 0 ))
+	then
+		echo "Fizz"
+	elif (( x % 5 == 0 ))
+	then
+		echo "Buzz"
+	else
+		echo "$x"
+	fi
+	x=$((x+1))
+done

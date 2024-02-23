@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# The script cretes a file and saves it's pid
+# displays "TO infinity and beyond" with sleep 2 after
+#+ each iteration
+# ignores SIGINT
+# Delets the file and exit on SIGTERM and SIGQUIT
+
+echo $$ >> /var/run/myscript.pid
+
+trap "echo 'Y U no love me?!'" SIGINT
+trap "echo 'I hate the kill command'; rm -rf /var/run/myscript.pid; exit" SIGTERM
+trap "rm -rf /var/run/myscript.pid; exit" SIGQUIT
+
+while true
+do
+   echo "To infinity and beyond"
+   sleep 2
+done

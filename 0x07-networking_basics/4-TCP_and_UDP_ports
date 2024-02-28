@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# displays listening sockets and th4 PID and name of the
+#+ program to whicheach socket belogs
+
+netstat -lp

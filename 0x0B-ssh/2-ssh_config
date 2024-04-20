@@ -1,0 +1,4 @@
+# ssh config to enable conecting with out password
+Host *
+	passwordAuthentication no
+	IdentifyFile ~/.ssh/school

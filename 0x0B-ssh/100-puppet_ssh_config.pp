@@ -11,7 +11,7 @@ file_line {'Turn of password Auth':
 file_line {'Set prv key to use for Auth':
   ensure  => present,
   path    => '/etc/ssh/ssh_config',
-  line    => '	IdentityFile ~/.ssh/school',
+  line    => '	IdentitfyFile ~/.ssh/school',
   replace => true,
 }
 

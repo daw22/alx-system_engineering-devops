@@ -1,4 +1,5 @@
 # update client ssh config to use private key Auth and not password
+include stdlib
 
 file_line {'Turn of password Auth':
   ensure  => present,

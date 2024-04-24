@@ -1,7 +1,7 @@
 # installs a package
 
 package {'werkzeug':
-  ensure => '2.2.2',
+  ensure   => '2.2.2',
   provider => 'pip3',
 }
 package {'flask':

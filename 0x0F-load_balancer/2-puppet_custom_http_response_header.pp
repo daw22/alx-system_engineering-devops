@@ -1,14 +1,17 @@
 # configure nginx with custom http_header 'X-Served-By'
+exec {'update':
+  command  => 'apt-get update',
+  provider => shell,
+}
 -> package {'nginx':
   ensure => present,
 }
 
--> file_line {'custum header':
+-> file_line {'custum_header':
   ensure => present,
-  path   => '/etc/nginx/sites-available/default',
-  line   => "	location / {
-  add_header X-Served-By ${hostname};",
-  match  => '^\tlocation / {',
+  path   => '/etc/nginx/nginx/nginx.conf',
+  line   => "http {\n\tadd_header X-Served-By \"${hostname}\";",
+  match  => 'http {',
 }
 
 -> exec {'restart':

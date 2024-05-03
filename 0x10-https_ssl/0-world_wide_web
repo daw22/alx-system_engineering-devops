@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Displays information about subdomains
+
+subdomain_info() {
+	local dig_result
+	local record
+	local ip
+	dig_result=$(dig "$1"."$2" | grep -A1 'ANSWER SECTION' | tail -n1 | awk '{print $1,$4,$5}')
+	record=$(awk '{print $2}' <<< "$dig_result")
+	ip=$(awk '{print $3}' <<< "$dig_result")
+	echo "The subdomain $1 is a $record record and points to $ip"
+}
+
+if [ $# -eq 2 ]
+then
+	subdomain_info "$2" "$1"
+else
+	subdomain_info "www" "$1"
+	subdomain_info "lb-01" "$1"
+	subdomain_info "web-01" "$1"
+	subdomain_info "web-02" "$1"
+fi
+

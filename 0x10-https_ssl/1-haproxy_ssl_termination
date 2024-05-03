@@ -33,13 +33,14 @@ defaults
         errorfile 502 /etc/haproxy/errors/502.http
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
+
 frontend haproxy_balancer
-    bind *:80
-    bind *:443 ssl crt /etc/letsencrypt/live/www.dawityifru.tech/fullchain.pem
-    mode tcp
+    bind :80
+    bind :443 ssl crt /etc/letsencrypt/live/www.dawityifru.tech/all.pem
+    mode http
     default_backend webservers
 
 backend webservers
     balance roundrobin
-    server 530550-web-01 52.91.154.62:80 check
-    server 530550-web-02 54.166.175.242:80 check
+    server web-01 52.91.154.62:80 check
+    server web-02 54.166.175.242:80 check

@@ -8,9 +8,13 @@ global
         group haproxy
         daemon
 
+        # Default SSL material locations
+        ca-base /etc/ssl/certs
+        crt-base /etc/ssl/private
 
         # See: https://ssl-config.mozilla.org/#server=haproxy&server-version=2.0.3&config=intermediate
-        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:>
+        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA
+20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
         ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
         ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
 
@@ -29,14 +33,13 @@ defaults
         errorfile 502 /etc/haproxy/errors/502.http
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
+frontend haproxy_balancer
+    bind *:80
+    bind *:443 ssl crt /etc/letsencrypt/live/www.dawityifru.tech/fullchain.pem
+    mode tcp
+    default_backend webservers
 
-frontend https-forntendi
-	bind *:80
-	bind *:443 ssl crt /etc/letsencrypt/live/www.dawityifru.tech/fullchain.pem
-	mode tcp
-	default_backend backend
-
-backend backend
-	balance roundrobin
-	server 530550-web-01 52.91.154.62:80 check
-	server 530550-web-02 52.166.175.242:80 check
+backend webservers
+    balance roundrobin
+    server 530550-web-01 52.91.154.62:80 check
+    server 530550-web-02 54.166.175.242:80 check

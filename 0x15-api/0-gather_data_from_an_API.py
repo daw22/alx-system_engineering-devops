@@ -23,7 +23,7 @@ if __name__ == '__main__':
     for todo in todos:
         if todo.get("completed"):
             completed_todos.append(todo)
-    print("Employee {} is done with tasks({}/{})"
+    print("Employee {} is done with tasks({}/{}):"
           .format(user_name, len(completed_todos), len(todos)))
     for todo in completed_todos:
         print("\t {}".format(todo.get("title")))

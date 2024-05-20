@@ -27,5 +27,4 @@ if __name__ == "__main__":
             "username": user_name
             })
     with open("{}.json".format(user_id), "w") as f:
-        for todo in todos:
             json.dump(dictionary, f)

@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 functionn that queries the Reddit API
 """

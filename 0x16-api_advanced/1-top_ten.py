@@ -5,7 +5,6 @@ subreddit
 """
 
 import requests
-import sys
 
 
 def top_ten(subreddit):
